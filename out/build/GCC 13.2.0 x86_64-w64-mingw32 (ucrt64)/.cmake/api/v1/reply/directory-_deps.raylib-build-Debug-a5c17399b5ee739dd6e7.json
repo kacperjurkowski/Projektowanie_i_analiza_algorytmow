@@ -1,0 +1,19 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 11
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "_deps/raylib-build",
+		"source" : "out/build/GCC 13.2.0 x86_64-w64-mingw32 (ucrt64)/_deps/raylib-src"
+	}
+}

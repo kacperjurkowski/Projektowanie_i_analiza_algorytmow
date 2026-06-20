@@ -1,0 +1,13 @@
+prefix=C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/out/install/GCC 13.2.0 x86_64-w64-mingw32 (ucrt64)
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: raylib
+Description: A simple and easy-to-use library to enjoy videogames programming
+URL: https://github.com/raysan5/raylib
+Version: 4.5.0
+Libs: -L"${libdir}" -lraylib 
+Libs.private: 
+Requires.private: 
+Cflags: -I"${includedir}"
