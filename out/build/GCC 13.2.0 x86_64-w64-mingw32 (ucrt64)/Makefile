@@ -245,6 +245,54 @@ update_mappings/fast:
 	$(MAKE) $(MAKESILENT) -f _deps\raylib-build\raylib\external\glfw\src\CMakeFiles\update_mappings.dir\build.make _deps/raylib-build/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
+ai.obj: ai.cpp.obj
+.PHONY : ai.obj
+
+# target to build an object file
+ai.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MojaGra.dir\build.make CMakeFiles/MojaGra.dir/ai.cpp.obj
+.PHONY : ai.cpp.obj
+
+ai.i: ai.cpp.i
+.PHONY : ai.i
+
+# target to preprocess a source file
+ai.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MojaGra.dir\build.make CMakeFiles/MojaGra.dir/ai.cpp.i
+.PHONY : ai.cpp.i
+
+ai.s: ai.cpp.s
+.PHONY : ai.s
+
+# target to generate assembly for a file
+ai.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MojaGra.dir\build.make CMakeFiles/MojaGra.dir/ai.cpp.s
+.PHONY : ai.cpp.s
+
+board.obj: board.cpp.obj
+.PHONY : board.obj
+
+# target to build an object file
+board.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MojaGra.dir\build.make CMakeFiles/MojaGra.dir/board.cpp.obj
+.PHONY : board.cpp.obj
+
+board.i: board.cpp.i
+.PHONY : board.i
+
+# target to preprocess a source file
+board.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MojaGra.dir\build.make CMakeFiles/MojaGra.dir/board.cpp.i
+.PHONY : board.cpp.i
+
+board.s: board.cpp.s
+.PHONY : board.s
+
+# target to generate assembly for a file
+board.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MojaGra.dir\build.make CMakeFiles/MojaGra.dir/board.cpp.s
+.PHONY : board.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -288,6 +336,12 @@ help:
 	@echo ... MojaGra
 	@echo ... glfw
 	@echo ... raylib
+	@echo ... ai.obj
+	@echo ... ai.i
+	@echo ... ai.s
+	@echo ... board.obj
+	@echo ... board.i
+	@echo ... board.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

@@ -14,10 +14,11 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(raylib)
 
 # Tworzenie pliku wykonywalnego z main.cpp
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp board.cpp ai.cpp)
 
-# Automatycznie kopiuje folder 'assets' obok gotowego pliku .exe
+# Automatycznie kopiuje folder 'assets oraz sounds_effects' obok gotowego pliku .exe
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/sound_effects DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 # Łączenie Twojej gry z biblioteką Raylib
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)

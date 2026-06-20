@@ -6,6 +6,18 @@
   "output": "CMakeFiles/MojaGra.dir/main.cpp.obj"
 },
 {
+  "directory": "C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/out/build/GCC 13.2.0 x86_64-w64-mingw32 (ucrt64)",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles\\MojaGra.dir\\includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\MojaGra.dir\\board.cpp.obj -c C:\\Users\\kacpe\\OneDrive\\Dokumenty\\GitHub\\Projektowanie_i_analiza_algorytmow\\board.cpp",
+  "file": "C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/board.cpp",
+  "output": "CMakeFiles/MojaGra.dir/board.cpp.obj"
+},
+{
+  "directory": "C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/out/build/GCC 13.2.0 x86_64-w64-mingw32 (ucrt64)",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP @CMakeFiles\\MojaGra.dir\\includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\MojaGra.dir\\ai.cpp.obj -c C:\\Users\\kacpe\\OneDrive\\Dokumenty\\GitHub\\Projektowanie_i_analiza_algorytmow\\ai.cpp",
+  "file": "C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/ai.cpp",
+  "output": "CMakeFiles/MojaGra.dir/ai.cpp.obj"
+},
+{
   "directory": "C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/out/build/GCC 13.2.0 x86_64-w64-mingw32 (ucrt64)/_deps/raylib-build/raylib",
   "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP -D_CRT_SECURE_NO_WARNINGS @CMakeFiles\\raylib.dir\\includes_C.rsp -fno-strict-aliasing -Werror=implicit-function-declaration -Werror=pointer-arith  -g -std=gnu99 -o CMakeFiles\\raylib.dir\\rcore.c.obj -c \"C:\\Users\\kacpe\\OneDrive\\Dokumenty\\GitHub\\Projektowanie_i_analiza_algorytmow\\out\\build\\GCC 13.2.0 x86_64-w64-mingw32 (ucrt64)\\_deps\\raylib-src\\src\\rcore.c\"",
   "file": "C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/out/build/GCC 13.2.0 x86_64-w64-mingw32 (ucrt64)/_deps/raylib-src/src/rcore.c",

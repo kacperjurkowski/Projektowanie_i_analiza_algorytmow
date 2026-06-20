@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/MojaGra.dir/ai.cpp.obj"
+  "CMakeFiles/MojaGra.dir/ai.cpp.obj.d"
+  "CMakeFiles/MojaGra.dir/board.cpp.obj"
+  "CMakeFiles/MojaGra.dir/board.cpp.obj.d"
   "CMakeFiles/MojaGra.dir/main.cpp.obj"
   "CMakeFiles/MojaGra.dir/main.cpp.obj.d"
   "MojaGra.exe"

@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/ai.cpp" "CMakeFiles/MojaGra.dir/ai.cpp.obj" "gcc" "CMakeFiles/MojaGra.dir/ai.cpp.obj.d"
+  "C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/board.cpp" "CMakeFiles/MojaGra.dir/board.cpp.obj" "gcc" "CMakeFiles/MojaGra.dir/board.cpp.obj.d"
   "C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/main.cpp" "CMakeFiles/MojaGra.dir/main.cpp.obj" "gcc" "CMakeFiles/MojaGra.dir/main.cpp.obj.d"
   )
 

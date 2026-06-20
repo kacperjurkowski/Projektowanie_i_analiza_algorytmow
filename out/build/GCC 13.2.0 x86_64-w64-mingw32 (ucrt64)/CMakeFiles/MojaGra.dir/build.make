@@ -86,21 +86,55 @@ CMakeFiles/MojaGra.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MojaGra.dir/main.cpp.s"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\kacpe\OneDrive\Dokumenty\GitHub\Projektowanie_i_analiza_algorytmow\main.cpp -o CMakeFiles\MojaGra.dir\main.cpp.s
 
+CMakeFiles/MojaGra.dir/board.cpp.obj: CMakeFiles/MojaGra.dir/flags.make
+CMakeFiles/MojaGra.dir/board.cpp.obj: CMakeFiles/MojaGra.dir/includes_CXX.rsp
+CMakeFiles/MojaGra.dir/board.cpp.obj: C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/board.cpp
+CMakeFiles/MojaGra.dir/board.cpp.obj: CMakeFiles/MojaGra.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\kacpe\OneDrive\Dokumenty\GitHub\Projektowanie_i_analiza_algorytmow\out\build\GCC 13.2.0 x86_64-w64-mingw32 (ucrt64)\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MojaGra.dir/board.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MojaGra.dir/board.cpp.obj -MF CMakeFiles\MojaGra.dir\board.cpp.obj.d -o CMakeFiles\MojaGra.dir\board.cpp.obj -c C:\Users\kacpe\OneDrive\Dokumenty\GitHub\Projektowanie_i_analiza_algorytmow\board.cpp
+
+CMakeFiles/MojaGra.dir/board.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MojaGra.dir/board.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\kacpe\OneDrive\Dokumenty\GitHub\Projektowanie_i_analiza_algorytmow\board.cpp > CMakeFiles\MojaGra.dir\board.cpp.i
+
+CMakeFiles/MojaGra.dir/board.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MojaGra.dir/board.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\kacpe\OneDrive\Dokumenty\GitHub\Projektowanie_i_analiza_algorytmow\board.cpp -o CMakeFiles\MojaGra.dir\board.cpp.s
+
+CMakeFiles/MojaGra.dir/ai.cpp.obj: CMakeFiles/MojaGra.dir/flags.make
+CMakeFiles/MojaGra.dir/ai.cpp.obj: CMakeFiles/MojaGra.dir/includes_CXX.rsp
+CMakeFiles/MojaGra.dir/ai.cpp.obj: C:/Users/kacpe/OneDrive/Dokumenty/GitHub/Projektowanie_i_analiza_algorytmow/ai.cpp
+CMakeFiles/MojaGra.dir/ai.cpp.obj: CMakeFiles/MojaGra.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\kacpe\OneDrive\Dokumenty\GitHub\Projektowanie_i_analiza_algorytmow\out\build\GCC 13.2.0 x86_64-w64-mingw32 (ucrt64)\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MojaGra.dir/ai.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MojaGra.dir/ai.cpp.obj -MF CMakeFiles\MojaGra.dir\ai.cpp.obj.d -o CMakeFiles\MojaGra.dir\ai.cpp.obj -c C:\Users\kacpe\OneDrive\Dokumenty\GitHub\Projektowanie_i_analiza_algorytmow\ai.cpp
+
+CMakeFiles/MojaGra.dir/ai.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MojaGra.dir/ai.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\kacpe\OneDrive\Dokumenty\GitHub\Projektowanie_i_analiza_algorytmow\ai.cpp > CMakeFiles\MojaGra.dir\ai.cpp.i
+
+CMakeFiles/MojaGra.dir/ai.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MojaGra.dir/ai.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\kacpe\OneDrive\Dokumenty\GitHub\Projektowanie_i_analiza_algorytmow\ai.cpp -o CMakeFiles\MojaGra.dir\ai.cpp.s
+
 # Object files for target MojaGra
 MojaGra_OBJECTS = \
-"CMakeFiles/MojaGra.dir/main.cpp.obj"
+"CMakeFiles/MojaGra.dir/main.cpp.obj" \
+"CMakeFiles/MojaGra.dir/board.cpp.obj" \
+"CMakeFiles/MojaGra.dir/ai.cpp.obj"
 
 # External object files for target MojaGra
 MojaGra_EXTERNAL_OBJECTS =
 
 MojaGra.exe: CMakeFiles/MojaGra.dir/main.cpp.obj
+MojaGra.exe: CMakeFiles/MojaGra.dir/board.cpp.obj
+MojaGra.exe: CMakeFiles/MojaGra.dir/ai.cpp.obj
 MojaGra.exe: CMakeFiles/MojaGra.dir/build.make
 MojaGra.exe: _deps/raylib-build/raylib/libraylib.a
 MojaGra.exe: _deps/raylib-build/raylib/external/glfw/src/libglfw3.a
 MojaGra.exe: CMakeFiles/MojaGra.dir/linkLibs.rsp
 MojaGra.exe: CMakeFiles/MojaGra.dir/objects1.rsp
 MojaGra.exe: CMakeFiles/MojaGra.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\kacpe\OneDrive\Dokumenty\GitHub\Projektowanie_i_analiza_algorytmow\out\build\GCC 13.2.0 x86_64-w64-mingw32 (ucrt64)\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable MojaGra.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\kacpe\OneDrive\Dokumenty\GitHub\Projektowanie_i_analiza_algorytmow\out\build\GCC 13.2.0 x86_64-w64-mingw32 (ucrt64)\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable MojaGra.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\MojaGra.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
