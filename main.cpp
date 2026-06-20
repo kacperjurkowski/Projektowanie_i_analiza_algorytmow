@@ -120,7 +120,7 @@ int main() {
             
             if (aiThinkTimer >= aiThinkLimit) {
                 // Generuj ruch (poziom głębi: 3)
-                Move bestMove = AI::getBestMove(gameBoard, Player::Black, 3);
+                Move bestMove = AI::getBestMove(gameBoard, Player::Black, 1);
                 executeMove(bestMove, Player::Black);
                 aiThinkTimer = 0.0f;
             }
@@ -222,7 +222,7 @@ int main() {
 
                     if (selectedPos.x == logicalX && selectedPos.y == logicalY && !isDragging) {
                         DrawRectangle(screenMarginX + logicalX * screenFieldX, 
-                                    screenMarginY + logicalY * screenFieldY + 1.0f, 
+                                    screenMarginY + logicalY * screenFieldY + 6.0f, 
                                     screenFieldX, screenFieldY, Fade(GREEN, 0.4f));
                     }
 

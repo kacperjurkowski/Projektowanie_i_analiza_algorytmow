@@ -11,7 +11,7 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/raysan5/raylib.git
     GIT_TAG        5.0 # Pobieramy stabilną wersję 5.0
 )
-FetchContent_MakeAvailable(raylib)
+FetchContent_MakeAvailable(raylib) 
 
 # Tworzenie pliku wykonywalnego z main.cpp
 add_executable(${PROJECT_NAME} main.cpp board.cpp ai.cpp)
