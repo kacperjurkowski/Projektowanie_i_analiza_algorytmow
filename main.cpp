@@ -17,7 +17,7 @@ int main() {
     InitAudioDevice();          //Inicjalizacja systemu audio
 
     //Ikonka gry
-    Image windowIcon = LoadImage("assets/PawnBlack.png");
+    Image windowIcon = LoadImage("assets/PawnRed.png");
     SetWindowIcon(windowIcon);
     UnloadImage(windowIcon);    
 
@@ -35,8 +35,9 @@ int main() {
     Sound captureSound = LoadSound("sound_effects/capture.wav");  //Dźwięk bicia
     Sound winSound = LoadSound("sound_effects/win.wav");            //Dźwięk wygranej
     Sound loseSound = LoadSound("sound_effects/lose.wav");        //Dźwięk przegranej
+    Sound tieSound = LoadSound("sound_effects/tie.wav");        //Dźwięk remisu
 
-    //Wyłączone rozmycie pixelarta
+    //Wyłączone rozmycie pixelarta przy skalowaniu 
     SetTextureFilter(boardSprite, TEXTURE_FILTER_POINT);    
     SetTextureFilter(PawnBlack, TEXTURE_FILTER_POINT);    
     SetTextureFilter(PawnRed, TEXTURE_FILTER_POINT);    
@@ -46,7 +47,7 @@ int main() {
     SetTextureFilter(loseSprite, TEXTURE_FILTER_POINT);
     SetTextureFilter(tieSprite, TEXTURE_FILTER_POINT); 
 
-    const float scale = 3.0f;
+    const float scale = 3.0f;                       //Skala
     const int marginPx = 16;                        //Szerokość marginesu X
     const int marginPy = 30;                        //Szerokość marginesu Y
     
@@ -93,6 +94,7 @@ int main() {
         if (movesWithoutCapture >= 20) {
             gameOver = true;
             winner = Player::None; // Player::None jako zwycięzca zinterpretujemy jako REMIS
+            PlaySound(tieSound);
         }
 
         // Zmiana tury i odświeżenie zasad
@@ -285,6 +287,7 @@ int main() {
     UnloadSound(captureSound);
     UnloadSound(winSound);
     UnloadSound(loseSound);
+    UnloadSound(tieSound);
     CloseAudioDevice();
 
     //Sprzątnięcie pamięci
