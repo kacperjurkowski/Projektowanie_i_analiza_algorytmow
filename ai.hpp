@@ -4,13 +4,13 @@
 
 class AI {
 private:
-    // Funkcja oceniająca - komputer patrzy na planszę i liczy "punkty"
+    //Funkcja oceniająca - komputer patrzy na planszę i liczy "punkty"
     static int evaluate(const Board& board, Player aiPlayer);
 
-    // Główny algorytm Minimax (symulowanie przyszłych ruchów)
+    //Główny algorytm Minimax
     static int minimax(Board board, int depth, int alpha, int beta, bool isMaximizing, Player aiPlayer);
 
 public:
-    // Zwraca najlepszy znaleziony ruch
+    //Zwraca najlepszy znaleziony ruch
     static Move getBestMove(const Board& board, Player aiPlayer, int depth);
 };

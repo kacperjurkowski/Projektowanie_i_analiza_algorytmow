@@ -69,47 +69,49 @@ int main() {
     vector<Move> currentLegalMoves = gameBoard.getLegalMoves(currentPlayer); //Lista legalnych ruchów gracza
 
     // Stan gry
-    bool gameOver = false;
-    Player winner = Player::None;
-    bool isDragging = false;
+    bool gameOver = false;              //Flaga określająca czy gra zakończona czy gra trwa
+    Player winner = Player::None;       //Informacja kto wygrał (czerwoni/czarni)
+    bool isDragging = false;            //Czy gracz trzyma pionek
 
-    float aiThinkTimer = 0.0f;
-    const float aiThinkLimit = 0.5f;
+    float aiThinkTimer = 0.0f;          //Czas od rozpoczęcia tury komputera
+    const float aiThinkLimit = 0.5f;    //Czas, w którym komputer "udaje że myśli"
 
     int movesWithoutCapture = 0;    //Licznik do remisu
 
+    //Funkcja wykonująca ruch
     auto executeMove = [&](Move move, Player playerMoving) {
         gameBoard.applyMove(move); 
         
         // Zarządzanie Dźwiękiem i Licznikiem Remisu
         if (move.isCapture()) {
-            PlaySound(captureSound);
-            movesWithoutCapture = 0; // Resetujemy licznik przy biciu!
+            PlaySound(captureSound);    //Odtworzenie dźwięku bicia
+            movesWithoutCapture = 0;    //Resetujemy licznik przy biciu!
         } else {
-            PlaySound(moveSound);
-            movesWithoutCapture++;   // Zwykły ruch = licznik rośnie
+            PlaySound(moveSound);       //Odtworzenie dźwięku ruchu
+            movesWithoutCapture++;      //Zwykły ruch = licznik rośnie
         }
 
-        // ZASADA REMISU: 40 ruchów bez żadnego bicia
+        //ZASADA REMISU: 20 ruchów bez żadnego bicia
         if (movesWithoutCapture >= 20) {
-            gameOver = true;
-            winner = Player::None; // Player::None jako zwycięzca zinterpretujemy jako REMIS
-            PlaySound(tieSound);
+            gameOver = true;            //Koniec gry
+            winner = Player::None;      //Player::None jako zwycięzca zinterpretujemy jako REMIS
+            PlaySound(tieSound);        //Odtworzenie dźwięku remisu
         }
 
-        // Zmiana tury i odświeżenie zasad
+        //  Zmiana tury i odświeżenie zasad
         currentPlayer = (playerMoving == Player::Red) ? Player::Black : Player::Red;
         currentLegalMoves = gameBoard.getLegalMoves(currentPlayer); 
         
-        // Zwykły koniec gry - komuś skończyły się ruchy
+        //Zwykły koniec gry - komuś skończyły się ruchy
         if (!gameOver && currentLegalMoves.empty()) {
-            gameOver = true;
-            winner = playerMoving; // Zwycięża ten, kto po swoim ruchu zablokował przeciwnika
+            gameOver = true;        //Koniec gry
+            winner = playerMoving;  //Zwycięża ten, kto po swoim ruchu zablokował przeciwnika
             
             // Odtwarzamy dźwięk wygranej/przegranej
             PlaySound(winner == Player::Red ? winSound : loseSound); 
         }
 
+        //Domyślnie ustawienie zaznaczenia i trzymania pionka
         selectedPos = {-1, -1}; 
         isDragging = false;
     };
@@ -121,8 +123,8 @@ int main() {
             aiThinkTimer += GetFrameTime();
             
             if (aiThinkTimer >= aiThinkLimit) {
-                // Generuj ruch (poziom głębi: 3)
-                Move bestMove = AI::getBestMove(gameBoard, Player::Black, 1);
+                //Generuj ruch 
+                Move bestMove = AI::getBestMove(gameBoard, Player::Black, 3); //poziom głębi przeszukiwania prze AI: 3)
                 executeMove(bestMove, Player::Black);
                 aiThinkTimer = 0.0f;
             }
@@ -139,7 +141,7 @@ int main() {
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && isMouseOnGrid) {
                 bool moveExecuted = false;
 
-                // Click-to-move
+                //Click-to-move
                 if (selectedPos.x != -1) {
                     for (const auto& move : currentLegalMoves) {
                         if (move.getStart() == selectedPos && move.getEnd().x == gridX && move.getEnd().y == gridY) {
@@ -150,7 +152,7 @@ int main() {
                     }
                 }
 
-                // Zaznaczanie i łapanie piona
+                //Zaznaczanie i łapanie piona
                 if (!moveExecuted) {
                     Piece p = gameBoard.getPiece(gridX, gridY);
                     if (p.player == currentPlayer) {
@@ -173,7 +175,7 @@ int main() {
                 }
             }
 
-            // 2. UPUSZCZENIE PRZYCISKU MYSZY (Drag & Drop)
+            //2. UPUSZCZENIE PRZYCISKU MYSZY
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
                 if (isDragging) {
                     if (isMouseOnGrid && selectedPos.x != -1) {
@@ -208,7 +210,7 @@ int main() {
             }
         }
 
-        // Rysowanie stojących pionów
+        //Rysowanie stojących pionów
         for (int logicalY = 0; logicalY < 8; logicalY++) {          
             for (int logicalX = 0; logicalX < 8; logicalX++) {      
                 
@@ -240,7 +242,7 @@ int main() {
             }
         }
 
-        // Rysowanie przeciąganego pionka
+        //Rysowanie przeciąganego pionka
         if (isDragging && selectedPos.x != -1) {
             Piece p = gameBoard.getPiece(selectedPos.x, selectedPos.y);
             Texture2D texToDraw;
@@ -259,7 +261,7 @@ int main() {
 
         // --- EKRAN KOŃCOWY Z WŁASNYMI SPRITAMI ---
         if (gameOver) {
-            // Zaciemnienie ekranu
+            //Zaciemnienie ekranu
             DrawRectangle(0, 0, screenWidth, screenHeight, Fade(BLACK, 0.7f));
             
             Texture2D endSpriteToDraw;
@@ -282,7 +284,7 @@ int main() {
         EndDrawing();
     }
     
-    // Sprzątnięcie pamięci dźwiękowej
+    //Sprzątnięcie pamięci dźwiękowej
     UnloadSound(moveSound);
     UnloadSound(captureSound);
     UnloadSound(winSound);
@@ -290,7 +292,7 @@ int main() {
     UnloadSound(tieSound);
     CloseAudioDevice();
 
-    //Sprzątnięcie pamięci
+    //Sprzątnięcie pamięci po teksturach
     UnloadTexture(boardSprite);
     UnloadTexture(PawnBlack);
     UnloadTexture(PawnRed);

@@ -6,16 +6,16 @@ using namespace std;
 
 class Move {
 private:
-    Position startPos;              //Pozycja na początku ruchu
-    Position endPos;                //Pozycja pod koniec ruchu
-    vector<Position> capturedPieces; //Lista kratek, na których zbiliśmy piony wroga
+    Position startPos;                  //Pozycja na początku ruchu
+    Position endPos;                    //Pozycja pod koniec ruchu
+    vector<Position> capturedPieces;    //Lista kratek, na których zbiliśmy piony wroga
 
 public:
     //Konstruktor ruchu
     Move(Position start, Position end, vector<Position> captures = {})
         : startPos(start), endPos(end), capturedPieces(captures) {}
 
-    //Metody dostępu ("Gettery")
+    //Metody dostępu
     Position getStart() const { return startPos; }
     Position getEnd() const { return endPos; }
     vector<Position> getCaptures() const { return capturedPieces; }
@@ -38,7 +38,7 @@ private:
     void getNormalMoves(Player player, vector<Move>& moves) const;
     void getCaptureMoves(Player player, vector<Move>& moves) const;
     
-    // NOWA FUNKCJA: Rekurencyjne szukanie bicia wielokrotnego (w tym dla damek)
+    //Rekurencyjne szukanie bicia wielokrotnego
     void findCaptures(Position startPos, Position currentPos, Player player, bool isKing, vector<Position> currentPath, vector<Position> capturedPieces, vector<Move>& allMoves) const;
 
 public:

@@ -7,14 +7,14 @@ Board::Board() {
 }
 
 void Board::setupInitialBoard() {
-    // Najpierw czyścimy całą planszę (ustawiamy powietrze)
+    // Najpierw czyścimy całą planszę
     for (int y = 0; y < 8; ++y) {
         for (int x = 0; x < 8; ++x) {
             grid[y][x] = {Player::None, PieceType::None};
         }
     }
 
-    // Następnie układamy piony na ciemnych polach (jak w main.cpp!)
+    //Następnie układamy piony na ciemnych polach
     for (int y = 0; y < 8; ++y) {
         for (int x = 0; x < 8; ++x) {
             if ((x + y) % 2 != 0) {
@@ -50,19 +50,19 @@ void Board::applyMove(const Move& move) {
     Position start = move.getStart();
     Position end = move.getEnd();
     
-    // 1. Podnosimy piona ze startu
+    //1. Podnosimy piona ze startu
     Piece p = getPiece(start.x, start.y);
     setPiece(start.x, start.y, {Player::None, PieceType::None});
     
-    // 2. Kładziemy na polu docelowym
+    //2. Kładziemy na polu docelowym
     setPiece(end.x, end.y, p);
 
-    // 3. Usuwamy wszystkie zbite piony przeciwnika (zamieniamy w powietrze)
+    //3. Usuwamy wszystkie zbite piony przeciwnika (zamieniamy w powietrze)
     for (const Position& cap : move.getCaptures()) {
         setPiece(cap.x, cap.y, {Player::None, PieceType::None});
     }
 
-    // 4. PROMOCJA NA DAMKĘ (Jeśli doszedł na koniec planszy)
+    //4. PROMOCJA NA DAMKĘ (Jeśli doszedł na koniec planszy)
     if (p.type == PieceType::Man) {
         if (p.player == Player::Red && end.y == 0) {
             setPiece(end.x, end.y, {Player::Red, PieceType::Queen});
@@ -78,11 +78,11 @@ void Board::applyMove(const Move& move) {
 std::vector<Move> Board::getLegalMoves(Player player) const {
     std::vector<Move> moves;
     
-    // Najpierw szukamy, czy są jakiekolwiek bicia
+    //Najpierw szukamy, czy są jakiekolwiek bicia
     getCaptureMoves(player, moves);
 
-    // ZASADA BEZWZGLĘDNEGO BICIA: 
-    // Jeśli wektor 'moves' jest pusty (nie ma bić), to dopiero wtedy szukamy zwykłych ruchów.
+    //ZASADA BEZWZGLĘDNEGO BICIA: 
+    //Jeśli wektor moves jest pusty, to dopiero wtedy szukamy zwykłych ruchów.
     if (moves.empty()) {
         getNormalMoves(player, moves);
     }
@@ -94,33 +94,33 @@ void Board::getNormalMoves(Player player, std::vector<Move>& moves) const {
     for (int y = 0; y < 8; ++y) {
         for (int x = 0; x < 8; ++x) {
             Piece p = getPiece(x, y);
-            if (p.player != player) continue; // Ignorujemy piony przeciwnika
+            if (p.player != player) continue; //Ignorujemy piony przeciwnika
 
-            // Ustalenie dozwolonych kierunków w osi Y (Góra/Dół)
+            //Ustalenie dozwolonych kierunków w osi Y
             std::vector<int> dirsY;
             if (p.type == PieceType::Queen) {
-                dirsY = {-1, 1}; // Damka idzie i w górę i w dół
+                dirsY = {-1, 1}; //Damka idzie i w górę i w dół
             } else if (player == Player::Red) {
-                dirsY = {-1};    // Czerwone idą tylko w górę ekranu (Y maleje)
+                dirsY = {-1};    //Czerwone idą tylko w górę ekranu (Y maleje)
             } else {
-                dirsY = {1};     // Czarne idą tylko w dół ekranu (Y rośnie)
+                dirsY = {1};     //Czarne idą tylko w dół ekranu (Y rośnie)
             }
 
-            // Sprawdzamy przekątne
+            //Sprawdzamy przekątne
             for (int dy : dirsY) {
-                for (int dx : {-1, 1}) { // Lewo (-1) i Prawo (1)
+                for (int dx : {-1, 1}) { //Lewo (-1) i Prawo (1)
                     int nx = x + dx;
                     int ny = y + dy;
 
                     if (p.type == PieceType::Queen) {
-                        // DAMKA: Leci na dowolną ilość pustych pól
+                        //DAMKA: Leci na dowolną ilość pustych pól
                         while (isValidPos(nx, ny) && getPiece(nx, ny).isEmpty()) {
                             moves.push_back(Move({x, y}, {nx, ny}));
                             nx += dx;
                             ny += dy;
                         }
                     } else {
-                        // ZWYKŁY PIONEK: Tylko jedno pole
+                        //ZWYKŁY PIONEK: Tylko jedno pole
                         if (isValidPos(nx, ny) && getPiece(nx, ny).isEmpty()) {
                             moves.push_back(Move({x, y}, {nx, ny}));
                         }
@@ -138,7 +138,7 @@ void Board::getCaptureMoves(Player player, std::vector<Move>& moves) const {
             if (p.player == player) {
                 std::vector<Position> emptyPath;
                 std::vector<Position> emptyCaptures;
-                // Rozpoczynamy rekurencyjne szukanie bić dla tego pionka
+                //Rozpoczynamy rekurencyjne szukanie bić dla tego pionka
                 findCaptures({x, y}, {x, y}, player, p.type == PieceType::Queen, emptyPath, emptyCaptures, moves);
             }
         }
@@ -154,7 +154,7 @@ void Board::findCaptures(Position startPos, Position currentPos, Player player, 
         int dy = dir[1];
         
         if (!isQueen) {
-            // ZWYKŁY PIONEK - bicie tylko o 2 pola
+            //ZWYKŁY PIONEK - bicie tylko o 2 pola
             int overX = currentPos.x + dx;
             int overY = currentPos.y + dy;
             int landX = currentPos.x + 2 * dx;
@@ -164,14 +164,14 @@ void Board::findCaptures(Position startPos, Position currentPos, Player player, 
                 Piece overPiece = getPiece(overX, overY);
                 Piece landPiece = getPiece(landX, landY);
 
-                // Zabezpieczenie: Czy tego przeciwnika już nie zbiliśmy w tym łańcuchu?
+                //Zabezpieczenie: Czy tego przeciwnika już nie zbiliśmy w tym łańcuchu?
                 bool alreadyCaptured = false;
                 for (const auto& c : capturedPieces) {
                     if (c.x == overX && c.y == overY) { alreadyCaptured = true; break; }
                 }
 
                 if (!overPiece.isEmpty() && overPiece.player != player && !alreadyCaptured) {
-                    // Pole docelowe musi być puste (lub być naszym punktem startowym - bicie "w kółko")
+                    //Pole docelowe musi być puste (lub być naszym punktem startowym - bicie "w kółko")
                     if (landPiece.isEmpty() || (landX == startPos.x && landY == startPos.y)) {
                         foundAnyFurtherCapture = true;
                         
@@ -180,13 +180,13 @@ void Board::findCaptures(Position startPos, Position currentPos, Player player, 
                         std::vector<Position> newCaptures = capturedPieces;
                         newCaptures.push_back({overX, overY});
                         
-                        // Zaczepia samą siebie z nowej pozycji!
+                        //Zaczepia samą siebie z nowej pozycji
                         findCaptures(startPos, {landX, landY}, player, isQueen, newPath, newCaptures, allMoves);
                     }
                 }
             }
         } else {
-            // DAMKA - lotna, bada nieskończoną linię
+            //DAMKA - lotna, bada nieskończoną linię
             int step = 1;
             bool enemyFound = false;
             Position enemyPos = {-1, -1};
@@ -206,14 +206,14 @@ void Board::findCaptures(Position startPos, Position currentPos, Player player, 
 
                 if (!p.isEmpty() && !alreadyCaptured) {
                     if (p.player == player) {
-                        break; // Własny pion blokuje linię
+                        break; //Własny pion blokuje linię
                     } else {
-                        if (enemyFound) break; // Drugi wróg z rzędu w tej samej linii
+                        if (enemyFound) break; //Drugi wróg z rzędu w tej samej linii
                         enemyFound = true;
                         enemyPos = {nx, ny};
                     }
                 } else {
-                    // Puste pole za wrogiem - każde kolejne takie pole to nowe legalne lądowanie
+                    //Puste pole za wrogiem - każde kolejne takie pole to nowe legalne lądowanie
                     if (enemyFound) {
                         foundAnyFurtherCapture = true;
                         
@@ -222,7 +222,7 @@ void Board::findCaptures(Position startPos, Position currentPos, Player player, 
                         std::vector<Position> newCaptures = capturedPieces;
                         newCaptures.push_back(enemyPos);
                         
-                        // Z każdej opcji lądowania sprawdzamy dalsze ewentualne bicia
+                        //Z każdej opcji lądowania sprawdzamy dalsze ewentualne bicia
                         findCaptures(startPos, {nx, ny}, player, isQueen, newPath, newCaptures, allMoves);
                     }
                 }
@@ -231,7 +231,7 @@ void Board::findCaptures(Position startPos, Position currentPos, Player player, 
         }
     }
 
-    // Dodaj ostateczny ruch bicia tylko na samym końcu łańcucha (wymuszenie maksymalnego bicia)
+    //Dodaj ostateczny ruch bicia tylko na samym końcu łańcucha (wymuszenie maksymalnego bicia)
     if (!foundAnyFurtherCapture && !capturedPieces.empty()) {
         bool isDuplicate = false;
         for (const auto& m : allMoves) {

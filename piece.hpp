@@ -28,7 +28,7 @@ struct Position {
     int x;
     int y;
 
-    // Przeciążenie operatorów porównania (niezbędne do weryfikacji, czy kliknięto w dobre pole)
+    //Przeciążenie operatorów porównania (niezbędne do weryfikacji, czy kliknięto w dobre pole)
     bool operator==(const Position& other) const {
         return x == other.x && y == other.y;
     }

@@ -11,7 +11,7 @@ int AI::evaluate(const Board& board, Player aiPlayer) {
             Piece p = board.getPiece(x, y);
             if (p.isEmpty()) continue;
             
-            // Damka jest znacznie cenniejsza niż zwykły pion
+            //Damka jest znacznie cenniejsza niż zwykły pion
             int val = (p.type == PieceType::Queen) ? 5 : 1; 
             
             if (p.player == aiPlayer) score += val;
@@ -25,7 +25,7 @@ int AI::minimax(Board board, int depth, int alpha, int beta, bool isMaximizing, 
     Player currentPlayer = isMaximizing ? aiPlayer : ((aiPlayer == Player::Red) ? Player::Black : Player::Red);
     std::vector<Move> moves = board.getLegalMoves(currentPlayer);
 
-    // Koniec symulacji (osiągnięto limit głębokości lub koniec gry)
+    //Koniec symulacji (osiągnięto limit głębokości lub koniec gry)
     if (depth == 0 || moves.empty()) {
         int score = evaluate(board, aiPlayer);
         // Jeśli nie mamy ruchów, to przegraliśmy - komputer ucieka od tego scenariusza (-1000 pkt)
@@ -36,18 +36,18 @@ int AI::minimax(Board board, int depth, int alpha, int beta, bool isMaximizing, 
     }
 
     if (isMaximizing) {
-        int maxEval = std::numeric_limits<int>::min(); // Minus nieskończoność
+        int maxEval = std::numeric_limits<int>::min(); //Minus nieskończoność
         for (const Move& move : moves) {
-            Board newBoard = board; // Kopiujemy planszę na potrzeby symulacji
+            Board newBoard = board; //Kopiujemy planszę na potrzeby symulacji
             newBoard.applyMove(move);
             int eval = minimax(newBoard, depth - 1, alpha, beta, false, aiPlayer);
             maxEval = std::max(maxEval, eval);
             alpha = std::max(alpha, eval);
-            if (beta <= alpha) break; // Cięcie Alfa-Beta (przyspiesza algorytm)
+            if (beta <= alpha) break; //Cięcie Alfa-Beta (przyspiesza algorytm)
         }
         return maxEval;
     } else {
-        int minEval = std::numeric_limits<int>::max(); // Plus nieskończoność
+        int minEval = std::numeric_limits<int>::max(); //Plus nieskończoność
         for (const Move& move : moves) {
             Board newBoard = board;
             newBoard.applyMove(move);
@@ -63,7 +63,7 @@ int AI::minimax(Board board, int depth, int alpha, int beta, bool isMaximizing, 
 Move AI::getBestMove(const Board& board, Player aiPlayer, int depth) {
     std::vector<Move> moves = board.getLegalMoves(aiPlayer);
     
-    // Jeśli z jakiegoś powodu jest tylko 1 ruch, bierzemy go od razu (np. wymuszone bicie)
+    //Jeśli z jakiegoś powodu jest tylko 1 ruch, bierzemy go od razu (np. wymuszone bicie)
     if (moves.size() == 1) return moves[0];
 
     Move bestMove = moves[0];
